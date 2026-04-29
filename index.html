@@ -4,30 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delicias da Ely - Bolos Caseiros</title>
+    <title>Delicias da Ely</title>
     <style>
         :root {
-            /* Cores ajustadas para uma paleta mais "confeitaria" e menos "app corporativo" */
-            --primary-pink: #ff40f9;
-            --soft-pink: #feeefd;
-            --brown-text: #4a2c2a;
-            --green-price: #2e7d32;
+            --orange: #ff6600;
+            --green: #2e7d32; /*Cor dos Preços: Verde*/
             --light-green: #e8f5e9;
-            --danger: #d32f2f;
-            --accent-orange: #ff9800;
-            --footer-pink: #910d80;
+            --red: #d32f2f;
+            --Cor-do-Fundo: #feeefd;
+            --verde: #63d863;
+            --rodape: #910d80; /*Cor rosa*/
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
         }
 
         body {
-            background-color: var(--soft-pink);
-            color: var(--brown-text);
+            background-color: var(--Cor-do-Fundo);
+            color: #333;
             max-width: 450px;
             margin: 0 auto;
             overflow-x: hidden;
@@ -56,159 +54,361 @@
             gap: 6px;
         }
 
-        .status-aberto { background: var(--light-green); color: var(--green-price); }
-        .status-fechado { background: #ffebee; color: var(--danger); }
+        .status-aberto { background: var(--light-green); color: #2e7d32; }
+        .status-fechado { background: #ffebee; color: var(--red); }
 
-        .dot { width: 8px; height: 8px; border-radius: 50%; }
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
         .dot-green { background: #4caf50; animation: blink 1.2s infinite; }
-        .dot-red { background: var(--danger); }
+        .dot-red { background: var(--red); }
 
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
 
         /* --- CARRINHO FLUTUANTE --- */
         .cart-btn {
-            position: fixed;
+            position: fixed; /* Alterado para fixo */
             top: 20px;
             right: 20px;
-            background: var(--primary-pink);
+            background: var(--orange);
             color: white;
-            width: 55px;
-            height: 55px;
+            width: 50px; /* Um pouco maior para destaque */
+            height: 50px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 24px;
             cursor: pointer;
-            z-index: 999;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 999; /* Sempre acima de tudo */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             transition: all 0.3s ease;
         }
 
-        .cart-vibrant { animation: pulseGlow 1s infinite alternate; border: 2px solid white; }
+        /* Animação Vibrante/Pulsante */
+        .cart-vibrant {
+            animation: vibrateGlow 0.8s infinite alternate;
+            border: 2px solid white;
+        }
 
-        @keyframes pulseGlow {
-            0% { transform: scale(1); box-shadow: 0 0 5px var(--primary-pink); }
-            100% { transform: scale(1.1); box-shadow: 0 0 15px var(--primary-pink); }
+        @keyframes vibrateGlow {
+            0% { box-shadow: 0 0 5px var(--orange), 0 0 10px var(--orange); transform: scale(1); }
+            100% { box-shadow: 0 0 20px var(--orange), 0 0 30px #ff40f9; transform: scale(1.1); }
         }
 
         .logo-circle {
-            width: 120px;
-            height: 120px;
-            background: var(--soft-pink);
+            width: 130px;
+            height: 130px;
+            background: var(--orange);
             border-radius: 50%;
             margin: 0 auto;
-            border: 3px solid var(--primary-pink);
+            border: 4px solid white;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden; /* Garante que a imagem fique redonda */
         }
 
-        .logo-circle img { width: 100%; height: 100%; object-fit: cover; }
+        .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-        .store-title { margin-top: 15px; color: var(--primary-pink); font-size: 28px; font-weight: bold; }
-        .store-meta { font-size: 14px; color: #777; margin: 10px 0 20px; }
+        .store-title {
+            margin-top: 15px;
+            color: var(--orange);
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .store-meta {
+            font-size: 14px;
+            color: #666;
+            margin: 5px 0 20px;
+        }
 
         /* --- PROMO BAR --- */
         .promo-banner {
-            background: linear-gradient(135deg, var(--primary-pink), #ff77ff);
+            background: var(--orange);
             color: white;
             text-align: center;
             padding: 15px;
-            margin: -15px 15px 15px;
+            margin-top: -15px;
+            margin-left: 15px;
+            margin-right: 15px;
             border-radius: 20px;
-            box-shadow: 0 4px 10px rgba(255, 64, 249, 0.2);
         }
 
-        .countdown-container { display: flex; justify-content: center; gap: 10px; margin-top: 8px; }
-        .time-unit { background: rgba(0,0,0,0.2); border-radius: 6px; padding: 5px; min-width: 50px; }
-        .time-val { font-size: 18px; font-weight: bold; display: block; }
-        .time-lbl { font-size: 9px; text-transform: uppercase; }
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .time-unit {
+            background: black;
+            border-radius: 6px;
+            padding: 5px 10px;
+            min-width: 55px;
+        }
+
+        .time-unit span { display: block; }
+        .time-val { font-size: 20px; font-weight: bold; }
+        .time-lbl { font-size: 10px; text-transform: uppercase; }
 
         /* --- INFO CARDS --- */
-        .info-cards { padding: 0 15px; }
+        .info-cards { padding: 15px; }
         .info-card {
-            border: 1.5px dashed var(--primary-pink);
-            background: white;
+            border: 2px solid;
             border-radius: 12px;
-            padding: 10px;
+            padding: 12px;
             text-align: center;
-            font-size: 14px;
             font-weight: bold;
             margin-bottom: 10px;
-            color: var(--primary-pink);
         }
+        .info-green { border-color: var(--green); color: var(--green); }
+        .info-orange { border-color: var(--orange); color: var(--orange); }
 
         /* --- PRODUCTS --- */
-        .section-name { padding: 20px 15px 10px; font-size: 22px; font-weight: bold; color: var(--footer-pink); }
+        .section-name {
+            padding: 15px;
+            font-size: 22px;
+            font-weight: bold;
+        }
 
         .combo-card {
             background: white;
+            border: 2px solid #eee;
             border-radius: 20px;
-            margin: 0 15px 20px;
+            margin: 0 15px 25px;
             padding: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+            text-align: left;
+            position: relative;
+            animation: moveInOut 4s ease-in-out infinite;
         }
 
-        .combo-img { width: 100%; height: 200px; border-radius: 15px; object-fit: cover; margin-bottom: 12px; }
+        @keyframes moveInOut {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        .combo-img {
+            width: 100%;
+            height: 240px;
+            background: #f0f0f0;
+            border-radius: 15px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
         .combo-title { font-size: 18px; font-weight: bold; margin-bottom: 5px; }
+        .frete-label { color: #666; font-size: 14px; margin-bottom: 10px; }
+        .price-old { text-decoration: line-through; color: #999; font-size: 14px; }
         .price-new {
             background: var(--light-green);
-            color: var(--green-price);
-            padding: 5px 12px;
+            color: var(--green);
+            padding: 5px 15px;
             border-radius: 8px;
             display: inline-block;
-            font-size: 22px;
-            font-weight: 800;
-            margin: 8px 0;
+            font-size: 24px;
+            font-weight: 900;
+            margin: 5px 0;
         }
+        .urgent { color: var(--red); font-size: 13px; font-weight: bold; margin-top: 5px; }
 
         .btn-add {
-            background: #4caf50;
+            background: var(--verde);
             color: white;
             border: none;
             width: 100%;
-            padding: 14px;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .grid-items {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 0 15px;
+        }
+
+        .item-small {
+            background: white;
+            border-radius: 15px;
+            padding: 12px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .img-small {
+            width: 100%;
+            height: 140px;
+            background: #eee;
             border-radius: 12px;
+            margin-bottom: 10px;
+            object-fit: cover;
+        }
+
+        /* --- ANIMAÇÃO DO BOLO --- */
+        .flying-cake {
+            position: fixed;
+            font-size: 32px; 
+            z-index: 10000;
+            transition: all 1.2s ease-in-out; /* Transição suave para cada etapa */
+            pointer-events: none;
+            transform: scale(1);
+        }
+
+        /* --- MODAL DO CARRINHO --- */
+        .modal-cart {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 2000;
+            display: none;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .close-modal {
+            background: #eee;
+            padding: 5px 15px;
+            border-radius: 8px;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s;
         }
 
-        .grid-items { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 0 15px; }
-        .item-small { background: white; border-radius: 15px; padding: 12px; box-shadow: 0 3px 10px rgba(0,0,0,0.05); }
-        .img-small { width: 100%; height: 120px; border-radius: 10px; object-fit: cover; margin-bottom: 8px; }
-
-        .flying-cake { position: fixed; font-size: 32px; z-index: 10000; transition: all 1s ease-in-out; pointer-events: none; }
-
-        /* --- MODAL --- */
-        .modal-cart, #finalizarModal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: white; z-index: 2000; display: none; flex-direction: column; padding: 20px;
+        .cart-items-list {
+            flex: 1;
+            overflow-y: auto;
         }
 
-        .modal-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; border-bottom: 1px solid #eee; }
-        .close-modal { background: #f5f5f5; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; }
-        .cart-items-list { flex: 1; overflow-y: auto; padding: 15px 0; }
-        .cart-item { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #fafafa; }
-        .cart-item-img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; }
-        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .btn-qty {
+            background: #eee;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-remove {
+            color: var(--red);
+            font-size: 18px;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        /* --- FOOTER --- */
+        Footer {
+            background: var(--rodape);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 30px;
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+        }
+
+
+        .footer-links { margin-top: 15px; font-size: 14px; text-decoration: underline; }
+    
+        .linha-rosa {
+            width: 50%; 
+            margin: 2px auto;
+            border: 0; 
+            height: 2px;
+            background-image: radial-gradient(circle, pink, transparent);
+        }
+    .linha-rosa-2 {
+            width: 300px; 
+            margin: 2px auto;
+            border: 0; 
+            height: 2px;
+            background-image: radial-gradient(circle, pink, transparent);
+        }
+
+        /* MODAL FINALIZAR */
+        #finalizarModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 3000;
+            display: none;
+            flex-direction: column;
+            padding: 30px;
+            text-align: center;
+        }
+
         .input-cliente {
-            width: 100%; padding: 15px; margin: 20px 0; border: 2px solid #f0f0f0;
-            border-radius: 12px; font-size: 16px; outline: none;
+            width: 100%;
+            padding: 15px;
+            margin: 20px 0;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 16px;
         }
-
-        footer {
-            background: var(--footer-pink); color: white; padding: 40px 20px;
-            text-align: center; margin-top: 30px; border-radius: 40px 40px 0 0;
-        }
-
-        .footer-links { margin-top: 15px; font-size: 12px; opacity: 0.8; }
-        .linha-rosa { width: 60%; margin: 10px auto; border: 0; height: 1px; background: rgba(255,255,255,0.2); }
-
+    
     </style>
 </head>
 <body>
@@ -222,85 +422,126 @@
         </div>
         
         <div class="logo-circle">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyiE6cOUfaP9F-l-bziquUfvzasrYRPCZQ3eNI4G1ubodJMTL7ocnhlWY&s=10" alt="Delícias da Ely">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyiE6cOUfaP9F-l-bziquUfvzasrYRPCZQ3eNI4G1ubodJMTL7ocnhlWY&s=10" alt="Logo">
         </div>
 
-        <div class="store-title">Delicias da Ely</div>
-        <div class="store-meta">
-            <p>📍 Anápolis, GO • Entrega Grátis</p>
-            <p style="margin-top: 5px;">⭐ 5.0 (Cardápio Digital)</p>
+        <div class="store-title" style="font-size: 40px; color: #ff40f9; padding: 20px;">Delicias da Ely</div>
+        <div class="store-meta"><hr class="linha-rosa"><br>📍 1,6km de você • Entrega grátis
+            <p style="padding: 6px;"><br>⭐ 5.0 (1,392 avaliações)</p>
         </div>
     </div>
 
     <div class="promo-banner">
-        <p>Ofertas expiram em:</p>
+        <p>A promoção vai acabar em:</p>
         <div class="countdown-container">
             <div class="time-unit"><span class="time-val" id="h">00</span><span class="time-lbl">Horas</span></div>
-            <div class="time-unit"><span class="time-val" id="m">56</span><span class="time-lbl">Mins</span></div>
-            <div class="time-unit"><span class="time-val" id="s">48</span><span class="time-lbl">Segs</span></div>
+            <div class="time-unit"><span class="time-val" id="m">56</span><span class="time-lbl">Minutos</span></div>
+            <div class="time-unit"><span class="time-val" id="s">48</span><span class="time-lbl">Segundos</span></div>
         </div>
     </div>
 
     <div class="info-cards">
-        <div class="info-card">🍰 Bolos caseiros feitos com amor</div>
+        <div class="info-card info-green">Entrega Grátis para Anápolis</div>
+        <div class="info-card info-orange">Aproveite nossa promoção com preços imperdíveis!</div>
     </div>
 
-    <div class="section-name" style="text-align: center;">Destaques do Dia</div>
+    <div class="section-name" style="text-align: center; color: #ff40f9; font-size: 25px;">Ofertas de hoje <br>⬇💗⬇</div>
 
     <div class="combo-card">
-        <img class="combo-img" src="https://guiadacozinha.com.br/wp-content/uploads/2019/11/bolo-romeu-julieta.jpg" alt="Combo">
-        <div class="combo-title">Combo Casal (Bolo de Pote + Fubá)</div>
+        <img class="combo-img" src="https://www.sabornamesa.com.br/media/k2/items/cache/7a0c9d8bd9eadf879f0011817e8c2396_L.jpg" alt="Combo Casal">
+        <div class="combo-title">Combo Casal - 2 Bolos de Pote + Bolo de Fubá</div>
+        <div class="frete-label">Frete Grátis</div>
+        <div class="price-old">de R$ 53,80 por</div>
         <div class="price-new">R$ 32,90</div>
-        <button class="btn-add" onclick="addToCart('Combo Casal', 32.90, 'https://guiadacozinha.com.br/wp-content/uploads/2019/11/bolo-romeu-julieta.jpg', event)">Adicionar</button>
+        <div class="urgent">🔥 Apenas 1 unidade(s) com esse preço especial</div>
+        <button class="btn-add" onclick="addToCart('Combo Casal', 32.90, 'https://www.sabornamesa.com.br/media/k2/items/cache/7a0c9d8bd9eadf879f0011817e8c2396_L.jpg', event)">Adicionar ao carrinho</button>
     </div>
 
-    <div class="section-name">Nossos Bolos</div>
+    <div class="combo-card" style="animation-delay: 1s;">
+        <img class="combo-img" src="https://img.freepik.com/fotos-gratis/bolo-de-chocolate-caseiro-com-cobertura_23-2148769300.jpg" alt="Combo Família">
+        <div class="combo-title">Combo Família - 4 Bolos Caseiros Variados</div>
+        <div class="frete-label">Frete Grátis</div>
+        <div class="price-old">de R$ 75,80 por</div>
+        <div class="price-new">R$ 49,90</div>
+        <div class="urgent">🔥 Apenas 1 unidade(s) com esse preço especial</div>
+        <button class="btn-add" onclick="addToCart('Combo Família', 49.90, 'https://img.freepik.com/fotos-gratis/bolo-de-chocolate-caseiro-com-cobertura_23-2148769300.jpg', event)">Adicionar ao carrinho</button>
+    </div>
+
+    <hr class="linha-rosa-2">
+    <div class="section-name" style="text-align: center; color: #ff40f9; font-size: 25px;">Bolos<br>⬇💗⬇</div>
     <div class="grid-items">
         <div class="item-small">
             <img class="img-small" src="https://img.freepik.com/fotos-gratis/bolo-de-cenoura-com-chocolate_23-2148769288.jpg">
-            <div class="combo-title" style="font-size: 14px;">Bolo Especial</div>
-            <div class="price-new" style="font-size: 16px;">R$ 15,90</div>
+            <div class="combo-title" style="font-size: 15px;">Bolo Especial</div>
+            <div class="price-new" style="font-size: 18px;">R$ 15,90</div>
             <button class="btn-add" onclick="addToCart('Bolo Especial', 15.90, 'https://img.freepik.com/fotos-gratis/bolo-de-cenoura-com-chocolate_23-2148769288.jpg', event)">Adicionar</button>
         </div>
         <div class="item-small">
             <img class="img-small" src="https://img.freepik.com/fotos-gratis/bolo-caseiro-com-po-de-acucar_23-2148769298.jpg">
-            <div class="combo-title" style="font-size: 14px;">Bolo Tradicional</div>
-            <div class="price-new" style="font-size: 16px;">R$ 17,00</div>
-            <button class="btn-add" onclick="addToCart('Bolo Tradicional', 17.00, 'https://img.freepik.com/fotos-gratis/bolo-caseiro-com-po-de-acucar_23-2148769298.jpg', event)">Adicionar</button>
+            <div class="combo-title" style="font-size: 15px;">Bolo Caseiro</div>
+            <div class="price-new" style="font-size: 18px;">R$ 17,00</div>
+            <button class="btn-add" onclick="addToCart('Bolo Caseiro', 17.00, 'https://img.freepik.com/fotos-gratis/bolo-caseiro-com-po-de-acucar_23-2148769298.jpg', event)">Adicionar</button>
         </div>
     </div>
 
     <div id="cartModal" class="modal-cart">
         <div class="modal-header">
-            <h2>Carrinho</h2>
-            <span class="close-modal" onclick="closeCart()">Fechar</span>
+            <h2>Meu Carrinho</h2>
+            <span class="close-modal" onclick="closeCart()">Voltar</span>
         </div>
-        <div id="cartItemsList" class="cart-items-list"></div>
-        <div style="padding: 20px 0;">
+        <div id="cartItemsList" class="cart-items-list">
+        </div>
+        <div style="margin-top: 20px; text-align: right;">
             <h3 id="totalPrice">Total: R$ 0,00</h3>
-            <button class="btn-add" onclick="abrirFinalizar()" style="margin-top: 15px; background: var(--primary-pink);">Continuar</button>
+            <button class="btn-add" onclick="abrirFinalizar()" style="margin-top: 20px;">Finalizar Pedido</button>
+        </div>
+    </div>
+    
+    <hr class="linha-rosa-2" style="margin-top: 20px;">
+    <div class="section-name" style="text-align: center; color: #ff40f9; font-size: 25px;">Apronta Entrega<br>⬇💗⬇</div>
+    <div class="grid-items">
+        <div class="item-small">
+            <img class="img-small" src="https://img.freepik.com/fotos-gratis/bolo-de-cenoura-com-chocolate_23-2148769288.jpg">
+            <div class="combo-title" style="font-size: 15px;">Bolo Especial</div>
+            <div class="price-new" style="font-size: 18px;">R$ 15,90</div>
+            <button class="btn-add" onclick="addToCart('Bolo Especial', 15.90, 'https://img.freepik.com/fotos-gratis/bolo-de-cenoura-com-chocolate_23-2148769288.jpg', event)">Adicionar</button>
+        </div>
+        <div class="item-small">
+            <img class="img-small" src="https://img.freepik.com/fotos-gratis/bolo-caseiro-com-po-de-acucar_23-2148769298.jpg">
+            <div class="combo-title" style="font-size: 15px;">Bolo Caseiro</div>
+            <div class="price-new" style="font-size: 18px;">R$ 17,00</div>
+            <button class="btn-add" onclick="addToCart('Bolo Caseiro', 17.00, 'https://img.freepik.com/fotos-gratis/bolo-caseiro-com-po-de-acucar_23-2148769298.jpg', event)">Adicionar</button>
         </div>
     </div>
 
     <div id="finalizarModal">
-        <h2 style="color: var(--footer-pink);">Finalizar Pedido</h2>
-        <p style="margin-top: 15px;">Para onde enviamos as delícias?</p>
-        <input type="text" id="nomeCliente" class="input-cliente" placeholder="Seu Nome Completo" required>
-        <button class="btn-add" onclick="enviarPedidoWhatsApp()" style="background: #25d366;">Pedir pelo WhatsApp</button>
-        <p onclick="fecharFinalizar()" style="margin-top: 25px; cursor: pointer; color: #777;">Voltar ao carrinho</p>
+        <h2 style="color: var(--rodape); margin-bottom: 20px;">Finalizar Pedido</h2>
+        <p>Para entregar seus bolos, precisamos da sua localização:</p>
+        
+        <button id="btnLoc" class="btn-add" onclick="pegarLocalizacao()" style="background: var(--orange);">Confirmar Localização Exata</button>
+        
+        <div id="areaNome" style="display:none; margin-top: 30px;">
+            <p>Quem irá receber o pedido?</p>
+            <input type="text" id="nomeCliente" class="input-cliente" placeholder="Digite seu nome (Obrigatório)" required>
+            <button class="btn-add" onclick="enviarPedidoWhatsApp()">Finalizar Pedido</button>
+        </div>
+        
+        <button class="close-modal" onclick="fecharFinalizar()" style="margin-top: 40px; background: none; border: none; text-decoration: underline;">Voltar ao carrinho</button>
     </div>
+
 
     <footer>
         <p><strong>Delicias da Ely</strong></p>
-        <p>Anápolis - Goiás</p>
-        <hr class="linha-rosa">
-        <div class="footer-links">Pedido processado via WhatsApp</div>
+        <p><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" style="vertical-align: middle; margin-right: 5px;"> 62 99567-9219</p>
+        <div class="footer-links">Termos de Uso | Política de Privacidade</div>
     </footer>
 
     <script>
-        // Logística de Horário
+        // --- LÓGICA DO STATUS (ABERTO/FECHADO) ---
         function checkStatus() {
-            const hour = new Date().getHours();
+            const now = new Date();
+            const hour = now.getHours();
+            
             const badge = document.getElementById('status-badge');
             const dot = document.getElementById('status-dot');
             const label = document.getElementById('status-label');
@@ -316,89 +557,173 @@
             }
         }
 
-        // Countdown
+        // --- CONTAGEM REGRESSIVA ---
         let totalSec = (56 * 60) + 48;
         function countdown() {
             if(totalSec <= 0) return;
             totalSec--;
-            document.getElementById('h').innerText = String(Math.floor(totalSec / 3600)).padStart(2, '0');
-            document.getElementById('m').innerText = String(Math.floor((totalSec % 3600) / 60)).padStart(2, '0');
-            document.getElementById('s').innerText = String(totalSec % 60).padStart(2, '0');
+            
+            const h = Math.floor(totalSec / 3600);
+            const m = Math.floor((totalSec % 3600) / 60);
+            const s = totalSec % 60;
+
+            document.getElementById('h').innerText = String(h).padStart(2, '0');
+            document.getElementById('m').innerText = String(m).padStart(2, '0');
+            document.getElementById('s').innerText = String(s).padStart(2, '0');
         }
 
-        // Carrinho
+        // --- LÓGICA DO CARRINHO ---
         let cart = [];
+        let userLocation = "";
+
         function addToCart(name, price, img, event) {
+            // Criar o bolo voador
             const cake = document.createElement('div');
-            cake.innerText = '🍰';
+            cake.innerText = '🎂';
             cake.className = 'flying-cake';
+            
+            // Posição inicial: no botão clicado
             cake.style.left = event.clientX + 'px';
             cake.style.top = event.clientY + 'px';
             document.body.appendChild(cake);
 
-            const cartRect = document.getElementById('floatingCart').getBoundingClientRect();
+            const cartBtn = document.querySelector('.cart-btn');
+            const cartRect = cartBtn.getBoundingClientRect();
 
+            // --- ETAPA 1: IR PARA O MEIO E DAR ZOOM ---
+            setTimeout(() => {
+                cake.style.left = '50%';
+                cake.style.top = '50%';
+                cake.style.transform = 'translate(-50%, -50%) scale(3) rotate(20deg)';
+            }, 100);
+
+            // --- ETAPA 2: IR PARA O CARRINHO E ENCOLHER ---
             setTimeout(() => {
                 cake.style.left = (cartRect.left + 15) + 'px';
                 cake.style.top = (cartRect.top + 15) + 'px';
-                cake.style.transform = 'scale(0.1)';
-                cake.style.opacity = '0';
-            }, 50);
-            setTimeout(() => cake.remove(), 1000);
+                cake.style.transform = 'scale(0.2) rotate(360deg)';
+                cake.style.opacity = '0.5';
+            }, 1400); // Aguarda a primeira animação terminar
 
-            const item = cart.find(i => i.name === name);
-            if(item) item.qty++; else cart.push({ name, price, img, qty: 1 });
+            // Remover o elemento
+            setTimeout(() => cake.remove(), 2800);
+
+            // Adicionar ao array
+            const itemExistente = cart.find(i => i.name === name);
+            if(itemExistente) {
+                itemExistente.qty++;
+            } else {
+                cart.push({ name, price, img, qty: 1 });
+            }
             renderCart();
         }
 
         function renderCart() {
             const list = document.getElementById('cartItemsList');
             const totalText = document.getElementById('totalPrice');
-            const floatBtn = document.getElementById('floatingCart');
+            const floatingCart = document.getElementById('floatingCart');
             list.innerHTML = '';
             let total = 0;
 
-            if (cart.length > 0) floatBtn.classList.add('cart-vibrant');
-            else floatBtn.classList.remove('cart-vibrant');
+            // Ativar ou desativar animação vibrante baseada na quantidade
+            if (cart.length > 0) {
+                floatingCart.classList.add('cart-vibrant');
+            } else {
+                floatingCart.classList.remove('cart-vibrant');
+            }
 
             cart.forEach((item, index) => {
                 total += item.price * item.qty;
                 list.innerHTML += `
                     <div class="cart-item">
                         <img src="${item.img}" class="cart-item-img">
-                        <div style="flex:1">
+                        <div class="cart-item-info">
                             <strong>${item.name}</strong><br>
-                            <small>R$ ${item.price.toFixed(2)} x ${item.qty}</small>
+                            <span style="color: var(--green)">R$ ${item.price.toFixed(2)}</span>
+                            <div class="cart-controls">
+                                <button class="btn-qty" onclick="changeQty(${index}, -1)">-</button>
+                                <span>${item.qty}</span>
+                                <button class="btn-qty" onclick="changeQty(${index}, 1)">+</button>
+                            </div>
                         </div>
-                        <button onclick="removeItem(${index})" style="border:none; background:none; cursor:pointer">🗑️</button>
-                    </div>`;
+                        <span class="btn-remove" onclick="removeItem(${index})">🗑️</span>
+                    </div>
+                `;
             });
+
             totalText.innerText = `Total: R$ ${total.toFixed(2)}`;
         }
 
-        function removeItem(index) { cart.splice(index, 1); renderCart(); }
-        function openCart() { document.getElementById('cartModal').style.display = 'flex'; }
-        function closeCart() { document.getElementById('cartModal').style.display = 'none'; }
-        function abrirFinalizar() { if(cart.length > 0) document.getElementById('finalizarModal').style.display = 'flex'; }
-        function fecharFinalizar() { document.getElementById('finalizarModal').style.display = 'none'; }
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if(cart[index].qty <= 0) return removeItem(index);
+            renderCart();
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            renderCart();
+        }
+
+        function openCart() {
+            document.getElementById('cartModal').style.display = 'flex';
+        }
+
+        function closeCart() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
+        // --- LÓGICA FINALIZAÇÃO ---
+        function abrirFinalizar() {
+            if(cart.length === 0) return alert("Seu carrinho está vazio!");
+            document.getElementById('finalizarModal').style.display = 'flex';
+        }
+
+        function fecharFinalizar() {
+            document.getElementById('finalizarModal').style.display = 'none';
+        }
+
+        function pegarLocalizacao() {
+            const btn = document.getElementById('btnLoc');
+            btn.innerText = "Buscando localização...";
+            
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    userLocation = `https://www.google.com/maps?q=${position.coords.latitude},${position.coords.longitude}`;
+                    btn.innerText = "Tudo Ok";
+                    btn.style.background = "var(--verde)";
+                    document.getElementById('areaNome').style.display = "block";
+                }, () => {
+                    alert("Não conseguimos pegar sua localização. Verifique as permissões do seu navegador.");
+                    btn.innerText = "Confirmar Localização Exata";
+                });
+            } else {
+                alert("Seu navegador não suporta geolocalização.");
+            }
+        }
 
         function enviarPedidoWhatsApp() {
             const nome = document.getElementById('nomeCliente').value;
             if(!nome) return alert("Por favor, digite seu nome.");
 
-            let texto = `*Novo Pedido - Delícias da Ely*\n\n`;
-            texto += `*Cliente:* ${nome}\n\n`;
+            let mensagem = `*Novo Pedido - Delícias da Ely*%0A%0A`;
+            mensagem += `*Cliente:* ${nome}%0A`;
+            mensagem += `*Localização:* ${userLocation}%0A%0A`;
+            mensagem += `*Itens:*%0A`;
+            
             let total = 0;
             cart.forEach(item => {
-                texto += `• ${item.qty}x ${item.name} (R$ ${(item.price * item.qty).toFixed(2)})\n`;
+                mensagem += `- ${item.qty}x ${item.name} (R$ ${(item.price * item.qty).toFixed(2)})%0A`;
                 total += item.price * item.qty;
             });
-            texto += `\n*Total: R$ ${total.toFixed(2)}*`;
             
-            window.open(`https://api.whatsapp.com/send?phone=5562995679219&text=${encodeURIComponent(texto)}`, "_blank");
+            mensagem += `%0A*Total: R$ ${total.toFixed(2)}*`;
+            
+            const fone = "5562995679219";
+            window.open(`https://wa.me/${fone}?text=${mensagem}`, '_blank');
         }
 
-        setInterval(checkStatus, 5000);
+        setInterval(checkStatus, 1000);
         setInterval(countdown, 1000);
         checkStatus();
     </script>
