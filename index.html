@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -397,6 +399,7 @@
             flex-direction: column;
             padding: 30px;
             text-align: center;
+            overflow-y: auto;
         }
 
         .input-cliente {
@@ -406,6 +409,17 @@
             border: 2px solid #eee;
             border-radius: 10px;
             font-size: 16px;
+        }
+
+        .security-box {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 13px;
+            color: #555;
+            margin: 15px 0;
+            text-align: left;
         }
     
     </style>
@@ -447,7 +461,7 @@
     <div class="section-name" style="text-align: center; color: #ff40f9; font-size: 25px;">Ofertas de hoje <br>⬇💗⬇</div>
 
     <div class="combo-card">
-        <img class="combo-img" src="https://www.sabornamesa.com.br/media/k2/items/cache/7a0c9d8bd9eadf879f0011817e8c2396_L.jpg" alt="Combo Casal">
+        <img class="combo-img" src="https://guiadacozinha.com.br/wp-content/uploads/2019/11/bolo-romeu-julieta.jpg" alt="Combo Casal">
         <div class="combo-title">Combo Casal - 2 Bolos de Pote + Bolo de Fubá</div>
         <div class="frete-label">Frete Grátis</div>
         <div class="price-old">de R$ 53,80 por</div>
@@ -457,11 +471,11 @@
     </div>
 
     <div class="combo-card" style="animation-delay: 1s;">
-        <img class="combo-img" src="https://img.freepik.com/fotos-gratis/bolo-de-chocolate-caseiro-com-cobertura_23-2148769300.jpg" alt="Combo Família">
-        <div class="combo-title">Combo Família - 4 Bolos Caseiros Variados</div>
+        <img class="combo-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5Ey0MUNRWDhCOn8sdxfjdYsTiD0SPxM664ShkzQNaNKNqSs1dM8nPFzA&s=10" alt="Combo Família">
+        <div class="combo-title">Bolo Tradicional</div>
         <div class="frete-label">Frete Grátis</div>
-        <div class="price-old">de R$ 75,80 por</div>
-        <div class="price-new">R$ 49,90</div>
+        <div class="price-old">de R$ 24,80 por</div>
+        <div class="price-new">R$ 20,00</div>
         <div class="urgent">🔥 Apenas 1 unidade(s) com esse preço especial</div>
         <button class="btn-add" onclick="addToCart('Combo Família', 49.90, 'https://img.freepik.com/fotos-gratis/bolo-de-chocolate-caseiro-com-cobertura_23-2148769300.jpg', event)">Adicionar ao carrinho</button>
     </div>
@@ -515,14 +529,11 @@
 
     <div id="finalizarModal">
         <h2 style="color: var(--rodape); margin-bottom: 20px;">Finalizar Pedido</h2>
-        <p>Para entregar seus bolos, precisamos da sua localização:</p>
         
-        <button id="btnLoc" class="btn-add" onclick="pegarLocalizacao()" style="background: var(--orange);">Confirmar Localização Exata</button>
-        
-        <div id="areaNome" style="display:none; margin-top: 30px;">
+        <div id="areaNome" style="margin-top: 30px;">
             <p>Quem irá receber o pedido?</p>
             <input type="text" id="nomeCliente" class="input-cliente" placeholder="Digite seu nome (Obrigatório)" required>
-            <button class="btn-add" onclick="enviarPedidoWhatsApp()">Finalizar Pedido</button>
+            <button class="btn-add" onclick="enviarPedidoWhatsApp()">Finalizar Pedido via WhatsApp</button>
         </div>
         
         <button class="close-modal" onclick="fecharFinalizar()" style="margin-top: 40px; background: none; border: none; text-decoration: underline;">Voltar ao carrinho</button>
@@ -682,44 +693,25 @@
             document.getElementById('finalizarModal').style.display = 'none';
         }
 
-        function pegarLocalizacao() {
-            const btn = document.getElementById('btnLoc');
-            btn.innerText = "Buscando localização...";
-            
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((position) => {
-                    userLocation = `https://www.google.com/maps?q=${position.coords.latitude},${position.coords.longitude}`;
-                    btn.innerText = "Tudo Ok";
-                    btn.style.background = "var(--verde)";
-                    document.getElementById('areaNome').style.display = "block";
-                }, () => {
-                    alert("Não conseguimos pegar sua localização. Verifique as permissões do seu navegador.");
-                    btn.innerText = "Confirmar Localização Exata";
-                });
-            } else {
-                alert("Seu navegador não suporta geolocalização.");
-            }
-        }
-
         function enviarPedidoWhatsApp() {
             const nome = document.getElementById('nomeCliente').value;
             if(!nome) return alert("Por favor, digite seu nome.");
 
-            let mensagem = `*Novo Pedido - Delícias da Ely*%0A%0A`;
-            mensagem += `*Cliente:* ${nome}%0A`;
-            mensagem += `*Localização:* ${userLocation}%0A%0A`;
-            mensagem += `*Itens:*%0A`;
+            let texto = "*Novo Pedido - Delícias da Ely*\n\n";
+            texto += "*Cliente:* " + nome + "\n";
+            texto += "*Itens:*\n";
             
             let total = 0;
             cart.forEach(item => {
-                mensagem += `- ${item.qty}x ${item.name} (R$ ${(item.price * item.qty).toFixed(2)})%0A`;
+                texto += "- " + item.qty + "x " + item.name + " (R$ " + (item.price * item.qty).toFixed(2) + ")\n";
                 total += item.price * item.qty;
             });
             
-            mensagem += `%0A*Total: R$ ${total.toFixed(2)}*`;
+            texto += "\n*Total: R$ " + total.toFixed(2) + "*";
             
             const fone = "5562995679219";
-            window.open(`https://wa.me/${fone}?text=${mensagem}`, '_blank');
+            const mensagemFinal = encodeURIComponent(texto);
+            window.open("https://api.whatsapp.com/send?phone=" + fone + "&text=" + mensagemFinal, "_blank");
         }
 
         setInterval(checkStatus, 1000);
