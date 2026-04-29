@@ -32,7 +32,7 @@
             overflow-x: hidden;
         }
 
-        /* --- ESTILO DO CARROSSEL (ADICIONADO) --- */
+        /* --- ESTILO DO CARROSSEL --- */
         .carousel-container {
             display: flex;
             overflow-x: auto;
@@ -43,11 +43,11 @@
         }
 
         .carousel-container::-webkit-scrollbar {
-            display: none; /* Esconde a barra de rolagem */
+            display: none;
         }
 
         .carousel-item {
-            min-width: 180px; /* Largura de cada item no carrossel */
+            min-width: 180px;
             scroll-snap-align: start;
         }
 
@@ -94,12 +94,12 @@
 
         /* --- CARRINHO FLUTUANTE --- */
         .cart-btn {
-            position: fixed; /* Alterado para fixo */
+            position: fixed;
             top: 20px;
             right: 20px;
             background: var(--orange);
             color: white;
-            width: 50px; /* Um pouco maior para destaque */
+            width: 50px;
             height: 50px;
             border-radius: 50%;
             display: flex;
@@ -107,12 +107,11 @@
             align-items: center;
             font-size: 24px;
             cursor: pointer;
-            z-index: 999; /* Sempre acima de tudo */
+            z-index: 999;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             transition: all 0.3s ease;
         }
 
-        /* Animação Vibrante/Pulsante */
         .cart-vibrant {
             animation: vibrateGlow 0.8s infinite alternate;
             border: 2px solid white;
@@ -136,7 +135,7 @@
             align-items: center;
             color: white;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            overflow: hidden; /* Garante que a imagem fique redonda */
+            overflow: hidden;
         }
 
         .logo-circle img {
@@ -150,7 +149,6 @@
             color: var(--orange);
             font-size: 24px;
             font-weight: bold;
-            /* Nova fonte aplicada aqui */
             font-family: 'Pacifico', cursive;
         }
 
@@ -216,10 +214,10 @@
             border-radius: 20px;
             margin: 0 15px 25px;
             padding: 15px;
-            text-align: center; /* Alterado para centro */
+            text-align: center;
             position: relative;
             animation: moveInOut 4s ease-in-out infinite;
-            display: flex; /* Adicionado para auxiliar centralização */
+            display: flex;
             flex-direction: column;
             align-items: center;
         }
@@ -277,10 +275,10 @@
             background: white;
             border-radius: 15px;
             padding: 12px;
-            text-align: center; /* Alterado para centro */
+            text-align: center;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centraliza itens no flex */
+            align-items: center;
             height: 100%;
         }
 
@@ -293,12 +291,12 @@
             object-fit: cover;
         }
 
-        /* --- ANIMAÇÃO DO BOLO --- */
+        /* --- ANIMAÇÃO --- */
         .flying-cake {
             position: fixed;
             font-size: 32px; 
             z-index: 10000;
-            transition: all 1.2s ease-in-out; /* Transição suave para cada etapa */
+            transition: all 1.2s ease-in-out;
             pointer-events: none;
             transform: scale(1);
         }
@@ -394,7 +392,6 @@
             border-top-right-radius: 50px;
         }
 
-
         .footer-links { margin-top: 15px; font-size: 14px; text-decoration: underline; }
     
         .linha-rosa {
@@ -404,7 +401,7 @@
             height: 2px;
             background-image: radial-gradient(circle, pink, transparent);
         }
-    .linha-rosa-2 {
+        .linha-rosa-2 {
             width: 300px; 
             margin: 2px auto;
             border: 0; 
@@ -435,7 +432,6 @@
             border-radius: 10px;
             font-size: 16px;
         }
-    
     </style>
 </head>
 <body>
@@ -474,51 +470,53 @@
 
     <div class="section-name" style="text-align: center; color: #ff40f9; font-size: 25px;">Ofertas de hoje <br>⬇💗⬇</div>
 
-    <div class="combo-card" id="prod-2000">
-        <img class="combo-img prod-img" src="https://www.sabornamesa.com.br/media/k2/items/cache/7a0c9d8bd9eadf879f0011817e8c2396_L.jpg" alt="Combo Casal">
-        <div class="combo-title prod-nome">Combo Casal - 2 Bolos de Pote + Bolo de Fubá</div>
-        <div class="frete-label">Frete Grátis</div>
-        <div class="price-old prod-preco-velho">de R$ 53,80 por</div>
-        <div class="price-new prod-preco-novo">R$ 32,90</div>
-        <div class="urgent">🔥 Apenas 1 unidade(s) com esse preço especial</div>
-        <button class="btn-add" onclick="addToCartByElement('prod-2000', event)">Adicionar ao carrinho</button>
-    </div>
+    <div id="container-ofertas">
+        <div class="combo-card" id="prod-2000">
+            <img class="combo-img prod-img" src="" alt="Combo">
+            <div class="combo-title prod-nome">Carregando...</div>
+            <div class="frete-label">Frete Grátis</div>
+            <div class="price-old prod-preco-velho">...</div>
+            <div class="price-new prod-preco-novo">...</div>
+            <div class="urgent">🔥 Apenas 1 unidade(s) com esse preço especial</div>
+            <button class="btn-add" onclick="addToCartByElement('prod-2000', event)">Adicionar ao carrinho</button>
+        </div>
 
-    <div class="combo-card" id="prod-2001" style="animation-delay: 1s;">
-        <img class="combo-img prod-img" src="https://img.freepik.com/fotos-gratis/bolo-de-chocolate-caseiro-com-cobertura_23-2148769300.jpg" alt="Combo Família">
-        <div class="combo-title prod-nome">Combo Família - 4 Bolos Caseiros Variados</div>
-        <div class="frete-label">Frete Grátis</div>
-        <div class="price-old prod-preco-velho">de R$ 75,80 por</div>
-        <div class="price-new prod-preco-novo">R$ 49,90</div>
-        <div class="urgent">🔥 Apenas 1 unidade(s) com esse preço especial</div>
-        <button class="btn-add" onclick="addToCartByElement('prod-2001', event)">Adicionar ao carrinho</button>
+        <div class="combo-card" id="prod-2001" style="animation-delay: 1s;">
+            <img class="combo-img prod-img" src="" alt="Combo">
+            <div class="combo-title prod-nome">Carregando...</div>
+            <div class="frete-label">Frete Grátis</div>
+            <div class="price-old prod-preco-velho">...</div>
+            <div class="price-new prod-preco-novo">...</div>
+            <div class="urgent">🔥 Apenas 1 unidade(s) com esse preço especial</div>
+            <button class="btn-add" onclick="addToCartByElement('prod-2001', event)">Adicionar ao carrinho</button>
+        </div>
     </div>
 
     <hr class="linha-rosa-2">
     <div class="section-name" style="text-align: center; color: #ff40f9; font-size: 25px;">Bolos<br>⬇💗⬇</div>
     
-    <div class="carousel-container">
+    <div class="carousel-container" id="carrossel-bolos">
         <div class="carousel-item" id="prod-100">
             <div class="item-small">
-                <img class="img-small prod-img" src="https://img.freepik.com/fotos-gratis/bolo-de-cenoura-com-chocolate_23-2148769288.jpg">
-                <div class="combo-title prod-nome" style="font-size: 15px;">Bolo Especial</div>
-                <div class="price-new prod-preco-novo" style="font-size: 18px;">R$ 15,90</div>
+                <img class="img-small prod-img" src="">
+                <div class="combo-title prod-nome" style="font-size: 15px;">...</div>
+                <div class="price-new prod-preco-novo" style="font-size: 18px;">...</div>
                 <button class="btn-add" onclick="addToCartByElement('prod-100', event)">Adicionar</button>
             </div>
         </div>
         <div class="carousel-item" id="prod-101">
             <div class="item-small">
-                <img class="img-small prod-img" src="https://img.freepik.com/fotos-gratis/bolo-caseiro-com-po-de-acucar_23-2148769298.jpg">
-                <div class="combo-title prod-nome" style="font-size: 15px;">Bolo Caseiro</div>
-                <div class="price-new prod-preco-novo" style="font-size: 18px;">R$ 17,00</div>
+                <img class="img-small prod-img" src="">
+                <div class="combo-title prod-nome" style="font-size: 15px;">...</div>
+                <div class="price-new prod-preco-novo" style="font-size: 18px;">...</div>
                 <button class="btn-add" onclick="addToCartByElement('prod-101', event)">Adicionar</button>
             </div>
         </div>
         <div class="carousel-item" id="prod-102">
             <div class="item-small">
-                <img class="img-small prod-img" src="https://www.sabornamesa.com.br/media/k2/items/cache/7a0c9d8bd9eadf879f0011817e8c2396_L.jpg">
-                <div class="combo-title prod-nome" style="font-size: 15px;">Bolo de Pote</div>
-                <div class="price-new prod-preco-novo" style="font-size: 18px;">R$ 12,00</div>
+                <img class="img-small prod-img" src="">
+                <div class="combo-title prod-nome" style="font-size: 15px;">...</div>
+                <div class="price-new prod-preco-novo" style="font-size: 18px;">...</div>
                 <button class="btn-add" onclick="addToCartByElement('prod-102', event)">Adicionar</button>
             </div>
         </div>
@@ -540,28 +538,28 @@
     <hr class="linha-rosa-2" style="margin-top: 20px;">
     <div class="section-name" style="text-align: center; color: #ff40f9; font-size: 25px;">Apronta Entrega<br>⬇💗⬇</div>
     
-    <div class="carousel-container">
+    <div class="carousel-container" id="carrossel-entrega">
         <div class="carousel-item" id="prod-300">
             <div class="item-small">
-                <img class="img-small prod-img" src="https://img.freepik.com/fotos-gratis/bolo-de-cenoura-com-chocolate_23-2148769288.jpg">
-                <div class="combo-title prod-nome" style="font-size: 15px;">Bolo Especial</div>
-                <div class="price-new prod-preco-novo" style="font-size: 18px;">R$ 15,90</div>
+                <img class="img-small prod-img" src="">
+                <div class="combo-title prod-nome" style="font-size: 15px;">...</div>
+                <div class="price-new prod-preco-novo" style="font-size: 18px;">...</div>
                 <button class="btn-add" onclick="addToCartByElement('prod-300', event)">Adicionar</button>
             </div>
         </div>
         <div class="carousel-item" id="prod-301">
             <div class="item-small">
-                <img class="img-small prod-img" src="https://img.freepik.com/fotos-gratis/bolo-caseiro-com-po-de-acucar_23-2148769298.jpg">
-                <div class="combo-title prod-nome" style="font-size: 15px;">Bolo Caseiro</div>
-                <div class="price-new prod-preco-novo" style="font-size: 18px;">R$ 17,00</div>
+                <img class="img-small prod-img" src="">
+                <div class="combo-title prod-nome" style="font-size: 15px;">...</div>
+                <div class="price-new prod-preco-novo" style="font-size: 18px;">...</div>
                 <button class="btn-add" onclick="addToCartByElement('prod-301', event)">Adicionar</button>
             </div>
         </div>
         <div class="carousel-item" id="prod-302">
             <div class="item-small">
-                <img class="img-small prod-img" src="https://img.freepik.com/fotos-gratis/bolo-de-chocolate-caseiro-com-cobertura_23-2148769300.jpg">
-                <div class="combo-title prod-nome" style="font-size: 15px;">Bolo Chocolate</div>
-                <div class="price-new prod-preco-novo" style="font-size: 18px;">R$ 19,90</div>
+                <img class="img-small prod-img" src="">
+                <div class="combo-title prod-nome" style="font-size: 15px;">...</div>
+                <div class="price-new prod-preco-novo" style="font-size: 18px;">...</div>
                 <button class="btn-add" onclick="addToCartByElement('prod-302', event)">Adicionar</button>
             </div>
         </div>
@@ -570,18 +568,14 @@
     <div id="finalizarModal">
         <h2 style="color: var(--rodape); margin-bottom: 20px;">Finalizar Pedido</h2>
         <p>Para entregar seus bolos, precisamos da sua localização:</p>
-        
         <button id="btnLoc" class="btn-add" onclick="pegarLocalizacao()" style="background: var(--orange);">Confirmar Localização Exata</button>
-        
         <div id="areaNome" style="display:none; margin-top: 30px;">
             <p>Quem irá receber o pedido?</p>
             <input type="text" id="nomeCliente" class="input-cliente" placeholder="Digite seu nome (Obrigatório)" required>
             <button class="btn-add" onclick="enviarPedidoWhatsApp()">Finalizar Pedido</button>
         </div>
-        
         <button class="close-modal" onclick="fecharFinalizar()" style="margin-top: 40px; background: none; border: none; text-decoration: underline;">Voltar ao carrinho</button>
     </div>
-
 
     <footer>
         <p><strong>Delicias da Ely</strong></p>
@@ -590,8 +584,7 @@
     </footer>
 
     <script>
-        // CONFIGURAÇÕES DA PLANILHA
-        const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQwwmjnfOV1_V0zB7ppi24TkUB4DhJpEn1Mys-n_nq-ueix146C-79aFyy9o3jGHGM0ZzVuWM4ZFwQV/pub?output=csv';
+        const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFTtQ3feIaDWKjbS9DZ0WUY6RL79C-H3OhsBHaAedJ6a5xetTOzrn9Iv0m1l2JGwJMJHf5Rx_fVyum/pub?output=csv';
         let configHorario = { aberto: "18:00", fechado: "23:59" };
 
         async function fetchSheetData() {
@@ -601,16 +594,15 @@
                 const rows = data.split('\n').map(row => row.split(','));
 
                 rows.forEach((row, index) => {
-                    // Pular a primeira linha (cabeçalho) se ela não for o ID 9000
                     if (index === 0 && row[1]?.trim().toLowerCase() === "id") return;
 
-                    const id = row[1]?.trim(); // Coluna B
-                    const img = row[2]?.trim(); // Coluna C
-                    const precoVelho = row[3]?.trim(); // Coluna D
-                    const precoNovo = row[4]?.trim(); // Coluna E
-                    const nome = row[5]?.trim(); // Coluna F
+                    const id = row[1]?.trim(); 
+                    const img = row[2]?.trim(); 
+                    const precoVelho = row[3]?.trim(); 
+                    const precoNovo = row[4]?.trim(); 
+                    const nome = row[5]?.trim(); 
 
-                    if (!id) return; // Ignora linhas sem ID
+                    if (!id) return;
 
                     if (id === "9000") {
                         configHorario.aberto = img; 
@@ -618,20 +610,83 @@
                         return;
                     }
 
-                    const element = document.getElementById('prod-' + id);
+                    let element = document.getElementById('prod-' + id);
+                    
+                    // --- CRIAÇÃO DINÂMICA DE PRODUTOS ---
+                    if (!element) {
+                        const idNum = parseInt(id);
+                        
+                        // Regra Ofertas de Hoje (200-299)
+                        if (idNum >= 200 && idNum <= 299) {
+                            const container = document.getElementById('container-ofertas');
+                            const div = document.createElement('div');
+                            div.className = 'combo-card';
+                            div.id = 'prod-' + id;
+                            div.innerHTML = `
+                                <img class="combo-img prod-img" src="" alt="Combo">
+                                <div class="combo-title prod-nome">...</div>
+                                <div class="frete-label">Frete Grátis</div>
+                                <div class="price-old prod-preco-velho"></div>
+                                <div class="price-new prod-preco-novo">...</div>
+                                <div class="urgent">🔥 Apenas 1 unidade(s) com esse preço especial</div>
+                                <button class="btn-add" onclick="addToCartByElement('prod-${id}', event)">Adicionar ao carrinho</button>
+                            `;
+                            container.appendChild(div);
+                            element = div;
+                        } 
+                        // Regra Carrossel de Bolos (100-199)
+                        else if (idNum >= 100 && idNum <= 199) {
+                            const container = document.getElementById('carrossel-bolos');
+                            const div = document.createElement('div');
+                            div.className = 'carousel-item';
+                            div.id = 'prod-' + id;
+                            div.innerHTML = `
+                                <div class="item-small">
+                                    <img class="img-small prod-img" src="">
+                                    <div class="combo-title prod-nome" style="font-size: 15px;">...</div>
+                                    <div class="price-new prod-preco-novo" style="font-size: 18px;">...</div>
+                                    <button class="btn-add" onclick="addToCartByElement('prod-${id}', event)">Adicionar</button>
+                                </div>
+                            `;
+                            container.appendChild(div);
+                            element = div;
+                        }
+                        // Regra Carrossel Apronta Entrega (300-399)
+                        else if (idNum >= 300 && idNum <= 399) {
+                            const container = document.getElementById('carrossel-entrega');
+                            const div = document.createElement('div');
+                            div.className = 'carousel-item';
+                            div.id = 'prod-' + id;
+                            div.innerHTML = `
+                                <div class="item-small">
+                                    <img class="img-small prod-img" src="">
+                                    <div class="combo-title prod-nome" style="font-size: 15px;">...</div>
+                                    <div class="price-new prod-preco-novo" style="font-size: 18px;">...</div>
+                                    <button class="btn-add" onclick="addToCartByElement('prod-${id}', event)">Adicionar</button>
+                                </div>
+                            `;
+                            container.appendChild(div);
+                            element = div;
+                        }
+                    }
+
                     if (element) {
-                        // Só atualiza a imagem se o link começar com http (evita carregar texto do cabeçalho)
                         if (img && img.startsWith('http')) element.querySelector('.prod-img').src = img;
                         if (nome) element.querySelector('.prod-nome').innerText = nome;
                         
-                        // Validação para evitar o erro NaN (Not a Number)
-                        if (precoNovo && !isNaN(precoNovo.replace(',', '.'))) {
-                            element.querySelector('.prod-preco-novo').innerText = 'R$ ' + parseFloat(precoNovo.replace(',', '.')).toFixed(2).replace('.', ',');
+                        if (precoNovo) {
+                            let pNovo = precoNovo.replace('R$', '').replace(/\s/g, '').replace(',', '.');
+                            if(!isNaN(parseFloat(pNovo))) {
+                                element.querySelector('.prod-preco-novo').innerText = 'R$ ' + parseFloat(pNovo).toFixed(2).replace('.', ',');
+                            }
                         }
                         
                         const oldPriceEl = element.querySelector('.prod-preco-velho');
-                        if (oldPriceEl && precoVelho && !isNaN(precoVelho.replace(',', '.'))) {
-                           oldPriceEl.innerText = 'de R$ ' + parseFloat(precoVelho.replace(',', '.')).toFixed(2).replace('.', ',') + ' por';
+                        if (oldPriceEl && precoVelho) {
+                           let pVelho = precoVelho.replace('R$', '').replace(/\s/g, '').replace(',', '.');
+                           if(!isNaN(parseFloat(pVelho))) {
+                               oldPriceEl.innerText = 'de R$ ' + parseFloat(pVelho).toFixed(2).replace('.', ',') + ' por';
+                           }
                         }
                     }
                 });
@@ -641,14 +696,11 @@
             }
         }
 
-        // --- LÓGICA DO STATUS (ABERTO/FECHADO) ---
         function checkStatus() {
             const now = new Date();
             const currentTime = now.getHours() * 60 + now.getMinutes();
-            
             const [hA, mA] = configHorario.aberto.split(':').map(Number);
             const [hF, mF] = configHorario.fechado.split(':').map(Number);
-            
             const openTime = hA * 60 + mA;
             const closeTime = hF * 60 + mF;
 
@@ -667,22 +719,18 @@
             }
         }
 
-        // --- CONTAGEM REGRESSIVA ---
         let totalSec = (56 * 60) + 48;
         function countdown() {
             if(totalSec <= 0) return;
             totalSec--;
-            
             const h = Math.floor(totalSec / 3600);
             const m = Math.floor((totalSec % 3600) / 60);
             const s = totalSec % 60;
-
             document.getElementById('h').innerText = String(h).padStart(2, '0');
             document.getElementById('m').innerText = String(m).padStart(2, '0');
             document.getElementById('s').innerText = String(s).padStart(2, '0');
         }
 
-        // --- LÓGICA DO CARRINHO ---
         let cart = [];
         let userLocation = "";
 
@@ -702,31 +750,22 @@
             cake.style.left = event.clientX + 'px';
             cake.style.top = event.clientY + 'px';
             document.body.appendChild(cake);
-
             const cartBtn = document.querySelector('.cart-btn');
             const cartRect = cartBtn.getBoundingClientRect();
-
             setTimeout(() => {
                 cake.style.left = '50%';
                 cake.style.top = '50%';
                 cake.style.transform = 'translate(-50%, -50%) scale(3) rotate(20deg)';
             }, 100);
-
             setTimeout(() => {
                 cake.style.left = (cartRect.left + 15) + 'px';
                 cake.style.top = (cartRect.top + 15) + 'px';
                 cake.style.transform = 'scale(0.2) rotate(360deg)';
                 cake.style.opacity = '0.5';
             }, 1400);
-
             setTimeout(() => cake.remove(), 2800);
-
             const itemExistente = cart.find(i => i.name === name);
-            if(itemExistente) {
-                itemExistente.qty++;
-            } else {
-                cart.push({ name, price, img, qty: 1 });
-            }
+            if(itemExistente) { itemExistente.qty++; } else { cart.push({ name, price, img, qty: 1 }); }
             renderCart();
         }
 
@@ -736,13 +775,7 @@
             const floatingCart = document.getElementById('floatingCart');
             list.innerHTML = '';
             let total = 0;
-
-            if (cart.length > 0) {
-                floatingCart.classList.add('cart-vibrant');
-            } else {
-                floatingCart.classList.remove('cart-vibrant');
-            }
-
+            if (cart.length > 0) { floatingCart.classList.add('cart-vibrant'); } else { floatingCart.classList.remove('cart-vibrant'); }
             cart.forEach((item, index) => {
                 total += item.price * item.qty;
                 list.innerHTML += `
@@ -761,7 +794,6 @@
                     </div>
                 `;
             });
-
             totalText.innerText = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
         }
 
@@ -776,28 +808,17 @@
             renderCart();
         }
 
-        function openCart() {
-            document.getElementById('cartModal').style.display = 'flex';
-        }
-
-        function closeCart() {
-            document.getElementById('cartModal').style.display = 'none';
-        }
-
-        // --- LÓGICA FINALIZAÇÃO ---
+        function openCart() { document.getElementById('cartModal').style.display = 'flex'; }
+        function closeCart() { document.getElementById('cartModal').style.display = 'none'; }
         function abrirFinalizar() {
             if(cart.length === 0) return alert("Seu carrinho está vazio!");
             document.getElementById('finalizarModal').style.display = 'flex';
         }
-
-        function fecharFinalizar() {
-            document.getElementById('finalizarModal').style.display = 'none';
-        }
+        function fecharFinalizar() { document.getElementById('finalizarModal').style.display = 'none'; }
 
         function pegarLocalizacao() {
             const btn = document.getElementById('btnLoc');
             btn.innerText = "Buscando localização...";
-            
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition((position) => {
                     userLocation = `https://www.google.com/maps?q=${position.coords.latitude},${position.coords.longitude}`;
@@ -805,38 +826,30 @@
                     btn.style.background = "var(--verde)";
                     document.getElementById('areaNome').style.display = "block";
                 }, () => {
-                    alert("Não conseguimos pegar sua localização. Verifique as permissões do seu navegador.");
+                    alert("Ative a localização para continuar.");
                     btn.innerText = "Confirmar Localização Exata";
                 });
-            } else {
-                alert("Seu navegador não suporta geolocalização.");
             }
         }
 
         function enviarPedidoWhatsApp() {
             const nome = document.getElementById('nomeCliente').value;
             if(!nome) return alert("Por favor, digite seu nome.");
-
             let mensagem = `*Novo Pedido - Delícias da Ely*%0A%0A`;
             mensagem += `*Cliente:* ${nome}%0A`;
             mensagem += `*Localização:* ${userLocation}%0A%0A`;
             mensagem += `*Itens:*%0A`;
-            
             let total = 0;
             cart.forEach(item => {
                 mensagem += `- ${item.qty}x ${item.name} (R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')})%0A`;
                 total += item.price * item.qty;
             });
-            
             mensagem += `%0A*Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
-            
-            const fone = "5562995679219";
-            window.open(`https://wa.me/${fone}?text=${mensagem}`, '_blank');
+            window.open(`https://wa.me/5562995679219?text=${mensagem}`, '_blank');
         }
 
-        // Inicialização
         fetchSheetData();
-        setInterval(fetchSheetData, 30000); // Atualiza planilha a cada 30 segundos
+        setInterval(fetchSheetData, 30000);
         setInterval(countdown, 1000);
     </script>
 </body>
