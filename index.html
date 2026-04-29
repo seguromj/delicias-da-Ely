@@ -239,7 +239,7 @@
 
         .combo-title { font-size: 18px; font-weight: bold; margin-bottom: 5px; }
         .frete-label { color: #666; font-size: 14px; margin-bottom: 10px; }
-        .price-old { text-decoration: line-through; color: #999; font-size: 14px; }
+        .price-old { text-decoration: line-through; color: #999; font-size: 14px; display: none; }
         .price-new {
             background: var(--light-green);
             color: var(--green);
@@ -454,15 +454,6 @@
         </div>
     </div>
 
-    <div class="promo-banner">
-        <p>A promoção vai acabar em:</p>
-        <div class="countdown-container">
-            <div class="time-unit"><span class="time-val" id="h">00</span><span class="time-lbl">Horas</span></div>
-            <div class="time-unit"><span class="time-val" id="m">56</span><span class="time-lbl">Minutos</span></div>
-            <div class="time-unit"><span class="time-val" id="s">48</span><span class="time-lbl">Segundos</span></div>
-        </div>
-    </div>
-
     <div class="info-cards">
         <div class="info-card info-green">Entrega Grátis para Anápolis</div>
         <div class="info-card info-orange">Aproveite nossa promoção com preços imperdíveis!</div>
@@ -474,21 +465,10 @@
         <div class="combo-card" id="prod-2000">
             <img class="combo-img prod-img" src="" alt="Combo">
             <div class="combo-title prod-nome">Carregando...</div>
-            <div class="frete-label">Frete Grátis</div>
-            <div class="price-old prod-preco-velho">...</div>
+            <div class="price-old prod-preco-velho" style="display:none;"></div>
             <div class="price-new prod-preco-novo">...</div>
             <div class="urgent">🔥 Apenas 1 unidade(s) com esse preço especial</div>
             <button class="btn-add" onclick="addToCartByElement('prod-2000', event)">Adicionar ao carrinho</button>
-        </div>
-
-        <div class="combo-card" id="prod-2001" style="animation-delay: 1s;">
-            <img class="combo-img prod-img" src="" alt="Combo">
-            <div class="combo-title prod-nome">Carregando...</div>
-            <div class="frete-label">Frete Grátis</div>
-            <div class="price-old prod-preco-velho">...</div>
-            <div class="price-new prod-preco-novo">...</div>
-            <div class="urgent">🔥 Apenas 1 unidade(s) com esse preço especial</div>
-            <button class="btn-add" onclick="addToCartByElement('prod-2001', event)">Adicionar ao carrinho</button>
         </div>
     </div>
 
@@ -496,31 +476,7 @@
     <div class="section-name" style="text-align: center; color: #ff40f9; font-size: 25px;">Bolos<br>⬇💗⬇</div>
     
     <div class="carousel-container" id="carrossel-bolos">
-        <div class="carousel-item" id="prod-100">
-            <div class="item-small">
-                <img class="img-small prod-img" src="">
-                <div class="combo-title prod-nome" style="font-size: 15px;">...</div>
-                <div class="price-new prod-preco-novo" style="font-size: 18px;">...</div>
-                <button class="btn-add" onclick="addToCartByElement('prod-100', event)">Adicionar</button>
-            </div>
         </div>
-        <div class="carousel-item" id="prod-101">
-            <div class="item-small">
-                <img class="img-small prod-img" src="">
-                <div class="combo-title prod-nome" style="font-size: 15px;">...</div>
-                <div class="price-new prod-preco-novo" style="font-size: 18px;">...</div>
-                <button class="btn-add" onclick="addToCartByElement('prod-101', event)">Adicionar</button>
-            </div>
-        </div>
-        <div class="carousel-item" id="prod-102">
-            <div class="item-small">
-                <img class="img-small prod-img" src="">
-                <div class="combo-title prod-nome" style="font-size: 15px;">...</div>
-                <div class="price-new prod-preco-novo" style="font-size: 18px;">...</div>
-                <button class="btn-add" onclick="addToCartByElement('prod-102', event)">Adicionar</button>
-            </div>
-        </div>
-    </div>
 
     <div id="cartModal" class="modal-cart">
         <div class="modal-header">
@@ -539,31 +495,7 @@
     <div class="section-name" style="text-align: center; color: #ff40f9; font-size: 25px;">Apronta Entrega<br>⬇💗⬇</div>
     
     <div class="carousel-container" id="carrossel-entrega">
-        <div class="carousel-item" id="prod-300">
-            <div class="item-small">
-                <img class="img-small prod-img" src="">
-                <div class="combo-title prod-nome" style="font-size: 15px;">...</div>
-                <div class="price-new prod-preco-novo" style="font-size: 18px;">...</div>
-                <button class="btn-add" onclick="addToCartByElement('prod-300', event)">Adicionar</button>
-            </div>
         </div>
-        <div class="carousel-item" id="prod-301">
-            <div class="item-small">
-                <img class="img-small prod-img" src="">
-                <div class="combo-title prod-nome" style="font-size: 15px;">...</div>
-                <div class="price-new prod-preco-novo" style="font-size: 18px;">...</div>
-                <button class="btn-add" onclick="addToCartByElement('prod-301', event)">Adicionar</button>
-            </div>
-        </div>
-        <div class="carousel-item" id="prod-302">
-            <div class="item-small">
-                <img class="img-small prod-img" src="">
-                <div class="combo-title prod-nome" style="font-size: 15px;">...</div>
-                <div class="price-new prod-preco-novo" style="font-size: 18px;">...</div>
-                <button class="btn-add" onclick="addToCartByElement('prod-302', event)">Adicionar</button>
-            </div>
-        </div>
-    </div>
 
     <div id="finalizarModal">
         <h2 style="color: var(--rodape); margin-bottom: 20px;">Finalizar Pedido</h2>
@@ -598,15 +530,14 @@
 
                     const id = row[1]?.trim(); 
                     const img = row[2]?.trim(); 
-                    const precoVelho = row[3]?.trim(); 
-                    const precoNovo = row[4]?.trim(); 
-                    const nome = row[5]?.trim(); 
+                    const precoReal = row[3]?.trim(); // Agora Coluna D é Valor Real
+                    const nome = row[4]?.trim(); // Agora Coluna E é Nome
 
                     if (!id) return;
 
                     if (id === "9000") {
                         configHorario.aberto = img; 
-                        configHorario.fechado = precoVelho;
+                        configHorario.fechado = precoReal;
                         return;
                     }
 
@@ -616,8 +547,8 @@
                     if (!element) {
                         const idNum = parseInt(id);
                         
-                        // Regra Ofertas de Hoje (200-299)
-                        if (idNum >= 200 && idNum <= 299) {
+                        // Regra Ofertas de Hoje (IDs como 2000+)
+                        if (idNum >= 1000) {
                             const container = document.getElementById('container-ofertas');
                             const div = document.createElement('div');
                             div.className = 'combo-card';
@@ -626,7 +557,7 @@
                                 <img class="combo-img prod-img" src="" alt="Combo">
                                 <div class="combo-title prod-nome">...</div>
                                 <div class="frete-label">Frete Grátis</div>
-                                <div class="price-old prod-preco-velho"></div>
+                                <div class="price-old prod-preco-velho" style="display:none;"></div>
                                 <div class="price-new prod-preco-novo">...</div>
                                 <div class="urgent">🔥 Apenas 1 unidade(s) com esse preço especial</div>
                                 <button class="btn-add" onclick="addToCartByElement('prod-${id}', event)">Adicionar ao carrinho</button>
@@ -644,6 +575,7 @@
                                 <div class="item-small">
                                     <img class="img-small prod-img" src="">
                                     <div class="combo-title prod-nome" style="font-size: 15px;">...</div>
+                                    <div class="price-old prod-preco-velho" style="display:none;"></div>
                                     <div class="price-new prod-preco-novo" style="font-size: 18px;">...</div>
                                     <button class="btn-add" onclick="addToCartByElement('prod-${id}', event)">Adicionar</button>
                                 </div>
@@ -651,8 +583,8 @@
                             container.appendChild(div);
                             element = div;
                         }
-                        // Regra Carrossel Apronta Entrega (300-399)
-                        else if (idNum >= 300 && idNum <= 399) {
+                        // Regra Carrossel Apronta Entrega (200-299)
+                        else if (idNum >= 200 && idNum <= 299) {
                             const container = document.getElementById('carrossel-entrega');
                             const div = document.createElement('div');
                             div.className = 'carousel-item';
@@ -661,6 +593,7 @@
                                 <div class="item-small">
                                     <img class="img-small prod-img" src="">
                                     <div class="combo-title prod-nome" style="font-size: 15px;">...</div>
+                                    <div class="price-old prod-preco-velho" style="display:none;"></div>
                                     <div class="price-new prod-preco-novo" style="font-size: 18px;">...</div>
                                     <button class="btn-add" onclick="addToCartByElement('prod-${id}', event)">Adicionar</button>
                                 </div>
@@ -674,19 +607,9 @@
                         if (img && img.startsWith('http')) element.querySelector('.prod-img').src = img;
                         if (nome) element.querySelector('.prod-nome').innerText = nome;
                         
-                        if (precoNovo) {
-                            let pNovo = precoNovo.replace('R$', '').replace(/\s/g, '').replace(',', '.');
-                            if(!isNaN(parseFloat(pNovo))) {
-                                element.querySelector('.prod-preco-novo').innerText = 'R$ ' + parseFloat(pNovo).toFixed(2).replace('.', ',');
-                            }
-                        }
-                        
-                        const oldPriceEl = element.querySelector('.prod-preco-velho');
-                        if (oldPriceEl && precoVelho) {
-                           let pVelho = precoVelho.replace('R$', '').replace(/\s/g, '').replace(',', '.');
-                           if(!isNaN(parseFloat(pVelho))) {
-                               oldPriceEl.innerText = 'de R$ ' + parseFloat(pVelho).toFixed(2).replace('.', ',') + ' por';
-                           }
+                        // Exibe o preço EXATAMENTE como está na Coluna D
+                        if (precoReal) {
+                            element.querySelector('.prod-preco-novo').innerText = precoReal;
                         }
                     }
                 });
@@ -737,8 +660,8 @@
         function addToCartByElement(id, event) {
             const el = document.getElementById(id);
             const name = el.querySelector('.prod-nome').innerText;
-            const priceStr = el.querySelector('.prod-preco-novo').innerText.replace('R$ ', '').replace(',', '.');
-            const price = parseFloat(priceStr);
+            const priceStr = el.querySelector('.prod-preco-novo').innerText.replace('R$ ', '').replace(',', '.').trim();
+            const price = parseFloat(priceStr) || 0;
             const img = el.querySelector('.prod-img').src;
             addToCart(name, price, img, event);
         }
