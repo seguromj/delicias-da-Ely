@@ -1,9 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta property="og:title" content="Delícias da Ely - Bolos Caseiros">
+    <meta property="og:description" content="Peça os melhores bolos de Anápolis direto pelo WhatsApp.">
+    <meta name="theme-color" content="#ff40f9">
+    
     <title>Delicias da Ely</title>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
@@ -533,7 +537,7 @@
         <button id="btnLoc" class="btn-add" onclick="pegarLocalizacao()" style="background: var(--gold);">Confirmar Localização Exata</button>
         <div id="areaNome" style="display:none; margin-top: 30px;">
             <p>Quem irá receber o pedido?</p>
-            <input type="text" id="nomeCliente" class="input-cliente" placeholder="Digite seu nome (Obrigatório)" required>
+            <input type="text" id="nomeCliente" class="input-cliente" placeholder="Digite seu nome (Obrigatório)" autocomplete="name" required>
             <button class="btn-add" onclick="enviarPedidoWhatsApp()">Finalizar Pedido</button>
         </div>
         <button class="close-modal" onclick="fecharFinalizar()" style="margin-top: 40px; background: none; border: none; text-decoration: underline;">Voltar ao carrinho</button>
@@ -807,3 +811,4 @@
     </script>
 </body>
 </html>
+
