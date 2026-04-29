@@ -16,214 +16,41 @@
             --rodape: #910d80;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        body { background-color: var(--Cor-do-Fundo); color: #333; max-width: 450px; margin: 0 auto; overflow-x: hidden; }
 
-        body {
-            background-color: var(--Cor-do-Fundo);
-            color: #333;
-            max-width: 450px;
-            margin: 0 auto;
-            overflow-x: hidden;
-        }
-
-        /* --- HEADER --- */
-        .header {
-            background: white;
-            padding-top: 40px;
-            text-align: center;
-            border-radius: 0 0 40px 40px;
-            position: relative;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .status-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
+        /* HEADER */
+        .header { background: white; padding-top: 40px; text-align: center; border-radius: 0 0 40px 40px; position: relative; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .status-badge { position: absolute; top: 15px; left: 15px; padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; display: flex; align-items: center; gap: 6px; }
         .status-aberto { background: var(--light-green); color: #2e7d32; }
         .status-fechado { background: #ffebee; color: var(--red); }
-
         .dot { width: 8px; height: 8px; border-radius: 50%; }
         .dot-green { background: #4caf50; animation: blink 1.2s infinite; }
         .dot-red { background: var(--red); }
-
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
-        /* --- CARRINHO FLUTUANTE --- */
-        .cart-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--orange);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 999;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-        }
-
+        .cart-btn { position: fixed; top: 20px; right: 20px; background: var(--orange); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; cursor: pointer; z-index: 999; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
         .cart-vibrant { animation: vibrateGlow 0.8s infinite alternate; border: 2px solid white; }
-        @keyframes vibrateGlow {
-            0% { box-shadow: 0 0 5px var(--orange), 0 0 10px var(--orange); transform: scale(1); }
-            100% { box-shadow: 0 0 20px var(--orange), 0 0 30px #ff40f9; transform: scale(1.1); }
-        }
+        @keyframes vibrateGlow { 0% { box-shadow: 0 0 5px var(--orange); transform: scale(1); } 100% { box-shadow: 0 0 20px var(--orange); transform: scale(1.1); } }
 
-        .logo-circle {
-            width: 130px;
-            height: 130px;
-            background: var(--orange);
-            border-radius: 50%;
-            margin: 0 auto;
-            border: 4px solid white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
+        .logo-circle { width: 130px; height: 130px; background: var(--orange); border-radius: 50%; margin: 0 auto; border: 4px solid white; display: flex; justify-content: center; align-items: center; overflow: hidden; }
         .logo-circle img { width: 100%; height: 100%; object-fit: cover; }
-        .store-title { margin-top: 15px; color: var(--orange); font-size: 24px; font-weight: bold; }
-        .store-meta { font-size: 14px; color: #666; margin: 5px 0 20px; }
 
-        /* --- PROMO BAR --- */
-        .promo-banner {
-            background: var(--orange);
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: -15px;
-            margin-left: 15px;
-            margin-right: 15px;
-            border-radius: 20px;
-        }
+        /* CARROSSEL */
+        .carousel-container { display: flex; overflow-x: auto; gap: 15px; padding: 15px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .carousel-container::-webkit-scrollbar { display: none; }
+        .item-small { min-width: 200px; scroll-snap-align: start; background: white; border-radius: 15px; padding: 12px; }
+        .img-small { width: 100%; height: 140px; border-radius: 12px; object-fit: cover; }
 
-        .countdown-container { display: flex; justify-content: center; gap: 15px; margin-top: 10px; }
-        .time-unit { background: black; border-radius: 6px; padding: 5px 10px; min-width: 55px; }
-        .time-val { font-size: 20px; font-weight: bold; }
-        .time-lbl { font-size: 10px; text-transform: uppercase; }
-
-        /* --- INFO CARDS --- */
-        .info-cards { padding: 15px; }
-        .info-card {
-            border: 2px solid;
-            border-radius: 12px;
-            padding: 12px;
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .info-green { border-color: var(--green); color: var(--green); }
-        .info-orange { border-color: var(--orange); color: var(--orange); }
-
-        /* --- PRODUCTS & CAROUSEL --- */
-        .section-name { padding: 15px; font-size: 22px; font-weight: bold; }
-
-        .carousel-container {
-            display: flex;
-            overflow-x: auto;
-            gap: 15px;
-            padding: 0 15px 20px;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none; /* Firefox */
-        }
-        .carousel-container::-webkit-scrollbar { display: none; } /* Chrome/Safari */
-
-        .item-small {
-            background: white;
-            border-radius: 15px;
-            padding: 12px;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            min-width: 180px; /* Largura para o carrossel */
-            scroll-snap-align: start;
-        }
-
-        .combo-card {
-            background: white;
-            border: 2px solid #eee;
-            border-radius: 20px;
-            margin: 0 15px 25px;
-            padding: 15px;
-            text-align: left;
-            position: relative;
-            animation: moveInOut 4s ease-in-out infinite;
-        }
-
-        @keyframes moveInOut { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
-
-        .combo-img { width: 100%; height: 240px; background: #f0f0f0; border-radius: 15px; object-fit: cover; margin-bottom: 15px; }
-        .combo-title { font-size: 18px; font-weight: bold; margin-bottom: 5px; }
-        .frete-label { color: #666; font-size: 14px; margin-bottom: 10px; }
-        .price-old { text-decoration: line-through; color: #999; font-size: 14px; }
-        .price-new {
-            background: var(--light-green);
-            color: var(--green);
-            padding: 5px 15px;
-            border-radius: 8px;
-            display: inline-block;
-            font-size: 24px;
-            font-weight: 900;
-            margin: 5px 0;
-        }
-        .urgent { color: var(--red); font-size: 13px; font-weight: bold; margin-top: 5px; }
-
-        .btn-add {
-            background: var(--verde);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: bold;
-            margin-top: 10px;
-            cursor: pointer;
-        }
-
-        .img-small { width: 100%; height: 140px; background: #eee; border-radius: 12px; margin-bottom: 10px; object-fit: cover; }
-
+        /* ESTILOS ORIGINAIS MANTIDOS */
+        .combo-card { background: white; border: 2px solid #eee; border-radius: 20px; margin: 0 15px 25px; padding: 15px; animation: moveInOut 4s infinite; }
+        @keyframes moveInOut { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+        .combo-img { width: 100%; height: 240px; border-radius: 15px; object-fit: cover; }
+        .price-new { background: var(--light-green); color: var(--green); padding: 5px 15px; border-radius: 8px; font-size: 24px; font-weight: 900; }
+        .btn-add { background: var(--verde); color: white; border: none; width: 100%; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        
+        .modal-cart, #finalizarModal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 2000; display: none; flex-direction: column; padding: 20px; }
         .flying-cake { position: fixed; font-size: 32px; z-index: 10000; transition: all 1.2s ease-in-out; pointer-events: none; }
-
-        /* --- MODAIS --- */
-        .modal-cart, #finalizarModal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white;
-            z-index: 3000; display: none; flex-direction: column; padding: 20px;
-        }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 15px; }
-        .close-modal { background: #eee; padding: 5px 15px; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; }
-        .cart-items-list { flex: 1; overflow-y: auto; }
-        .cart-item { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
-        .cart-item-img { width: 70px; height: 70px; border-radius: 10px; object-fit: cover; }
-        .input-cliente { width: 100%; padding: 15px; margin: 20px 0; border: 2px solid #eee; border-radius: 10px; font-size: 16px; }
-
-        /* --- FOOTER --- */
-        Footer { background: var(--rodape); color: white; padding: 40px 20px; text-align: center; margin-top: 30px; border-top-left-radius: 50px; border-top-right-radius: 50px; }
-        .footer-links { margin-top: 15px; font-size: 14px; text-decoration: underline; }
-        .linha-rosa, .linha-rosa-2 { width: 50%; margin: 2px auto; border: 0; height: 2px; background-image: radial-gradient(circle, pink, transparent); }
     </style>
 </head>
 <body>
@@ -231,129 +58,130 @@
     <div class="cart-btn" onclick="openCart()" id="floatingCart">🛒</div>
 
     <div class="header">
-        <div id="status-badge" class="status-badge status-aberto">
-            <div id="status-dot" class="dot dot-green"></div>
-            <span id="status-label">ABERTO</span>
+        <div id="status-badge" class="status-badge status-fechado">
+            <div id="status-dot" class="dot dot-red"></div>
+            <span id="status-label">FECHADO</span>
         </div>
         <div class="logo-circle">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyiE6cOUfaP9F-l-bziquUfvzasrYRPCZQ3eNI4G1ubodJMTL7ocnhlWY&s=10" alt="Logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyiE6cOUfaP9F-l-bziquUfvzasrYRPCZQ3eNI4G1ubodJMTL7ocnhlWY&s=10">
         </div>
-        <div class="store-title" style="font-size: 40px; color: #ff40f9; padding: 20px;">Delicias da Ely</div>
-        <div class="store-meta"><hr class="linha-rosa"><br>📍 Anápolis, GO • Entrega grátis
-            <p style="padding: 6px;"><br>⭐ 5.0 (1,392 avaliações)</p>
-        </div>
+        <div style="font-size: 40px; color: #ff40f9; padding: 20px;">Delicias da Ely</div>
     </div>
 
-    <div class="promo-banner">
-        <p>A promoção vai acabar em:</p>
-        <div class="countdown-container">
-            <div class="time-unit"><span class="time-val" id="h">00</span><span class="time-lbl">Horas</span></div>
-            <div class="time-unit"><span class="time-val" id="m">00</span><span class="time-lbl">Minutos</span></div>
-            <div class="time-unit"><span class="time-val" id="s">00</span><span class="time-lbl">Segundos</span></div>
-        </div>
-    </div>
+    <div id="secao-combos"></div>
 
-    <div class="info-cards">
-        <div class="info-card info-green">Entrega Grátis para Anápolis</div>
-        <div class="info-card info-orange">Produtos frescos todos os dias!</div>
-    </div>
+    <div style="text-align: center; color: #ff40f9; font-size: 25px; margin-top: 20px;">Bolos ⬇</div>
+    <div id="carousel-bolos" class="carousel-container"></div>
 
-    <div class="section-name" style="text-align: center; color: #ff40f9;">Ofertas de hoje <br>⬇💗⬇</div>
-    <div id="area-combos"></div>
-
-    <hr class="linha-rosa-2">
-    <div class="section-name" style="text-align: center; color: #ff40f9;">Bolos<br>⬇💗⬇</div>
-    <div id="carrossel-bolos" class="carousel-container"></div>
-
-    <hr class="linha-rosa-2">
-    <div class="section-name" style="text-align: center; color: #ff40f9;">Pronta Entrega<br>⬇💗⬇</div>
-    <div id="carrossel-pronta" class="carousel-container"></div>
+    <div style="text-align: center; color: #ff40f9; font-size: 25px; margin-top: 20px;">Pronta Entrega ⬇</div>
+    <div id="carousel-pronta" class="carousel-container"></div>
 
     <div id="cartModal" class="modal-cart">
-        <div class="modal-header"><h2>Meu Carrinho</h2><span class="close-modal" onclick="closeCart()">Voltar</span></div>
-        <div id="cartItemsList" class="cart-items-list"></div>
-        <div style="margin-top: 20px; text-align: right;">
-            <h3 id="totalPrice">Total: R$ 0,00</h3>
-            <button class="btn-add" onclick="abrirFinalizar()" style="margin-top: 20px;">Finalizar Pedido</button>
+        <div style="display:flex; justify-content: space-between; align-items:center;">
+            <h2>Meu Carrinho</h2>
+            <button onclick="closeCart()">Voltar</button>
         </div>
+        <div id="cartItemsList" style="flex:1; overflow-y:auto;"></div>
+        <h3 id="totalPrice">Total: R$ 0,00</h3>
+        <button class="btn-add" onclick="abrirFinalizar()">Finalizar Pedido</button>
     </div>
 
     <div id="finalizarModal">
-        <h2 style="color: var(--rodape); margin-bottom: 20px;">Finalizar Pedido</h2>
-        <input type="text" id="nomeCliente" class="input-cliente" placeholder="Digite seu nome (Obrigatório)">
+        <h2>Finalizar Pedido</h2>
+        <input type="text" id="nomeCliente" placeholder="Seu Nome" style="width:100%; padding:15px; margin:20px 0;">
         <button class="btn-add" onclick="enviarPedidoWhatsApp()">Enviar para WhatsApp</button>
-        <button class="close-modal" onclick="fecharFinalizar()" style="margin-top: 20px;">Voltar</button>
+        <button onclick="fecharFinalizar()">Voltar</button>
     </div>
 
-    <footer>
-        <p><strong>Delicias da Ely</strong></p>
-        <div class="footer-links">Pedido via WhatsApp</div>
-    </footer>
-
     <script>
-        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQwwmjnfOV1_V0zB7ppi24TkUB4DhJpEn1Mys-n_nq-ueix146C-79aFyy9o3jGHGM0ZzVuWM4ZFwQV/pub?output=csv';
+        const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQwwmjnfOV1_V0zB7ppi24TkUB4DhJpEn1Mys-n_nq-ueix146C-79aFyy9o3jGHGM0ZzVuWM4ZFwQV/pub?output=csv";
         let cart = [];
-        let horaAbre = 18; 
-        let horaFecha = 23;
+        let configHorario = { abre: 18, fecha: 23 };
 
         async function carregarDados() {
             const res = await fetch(sheetUrl);
             const data = await res.text();
             const linhas = data.split('\n').slice(1);
-            
-            const containerCombos = document.getElementById('area-combos');
-            const containerBolos = document.getElementById('carrossel-bolos');
-            const containerPronta = document.getElementById('carrossel-pronta');
 
-            let idBolo = 100;
-            let idPronta = 300;
-            let comboCount = 0;
+            const containerCombos = document.getElementById('secao-combos');
+            const carouselBolos = document.getElementById('carousel-bolos');
+            const carouselPronta = document.getElementById('carousel-pronta');
+
+            // Limpar containers
+            containerCombos.innerHTML = '';
+            carouselBolos.innerHTML = '';
+            carouselPronta.innerHTML = '';
+
+            let countBolo = 100;
+            let countPronta = 300;
 
             linhas.forEach(linha => {
-                const cols = linha.split(',');
-                if(cols.length < 5) return;
+                const col = linha.split(',');
+                const id = col[1]?.trim();
+                const nome = col[2]?.trim();
+                const imagem = col[3]?.trim();
+                const precoDe = col[4]?.trim();
+                const precoPor = col[5]?.trim();
 
-                const nome = cols[0].trim();
-                const img = cols[1].trim();
-                const precoDe = cols[2].trim();
-                const precoPor = cols[3].trim();
-                const secao = cols[4].trim();
+                // Regra ID 5000: Horário
+                if (id === "5000") {
+                    configHorario.abre = parseInt(nome);
+                    configHorario.fecha = parseInt(imagem);
+                    checkStatus();
+                    return;
+                }
 
-                // Lógica de IDs conforme pedido
-                let idFinal = 0;
-                if(secao === "Combos") {
-                    comboCount++;
-                    idFinal = (comboCount === 1) ? 1000 : 2000;
+                // Renderizar Combos (1000 e 2000)
+                if (id === "1000" || id === "2000") {
                     containerCombos.innerHTML += `
                         <div class="combo-card">
-                            <img class="combo-img" src="${img}">
-                            <div class="combo-title">${nome} (ID: ${idFinal})</div>
-                            <div class="price-old">de R$ ${precoDe} por</div>
+                            <img class="combo-img" src="${imagem}">
+                            <div style="font-weight:bold;">${nome} (ID: ${id})</div>
+                            <div style="text-decoration:line-through; color:gray;">de R$ ${precoDe}</div>
                             <div class="price-new">R$ ${precoPor}</div>
-                            <button class="btn-add" onclick="addToCart('${nome}', ${precoPor}, '${img}', event, ${idFinal})">Adicionar</button>
+                            <button class="btn-add" onclick="addToCart('${nome}', ${precoPor}, '${imagem}', event, ${id})">Adicionar</button>
                         </div>`;
                 } 
-                else if(secao === "Bolos" && idBolo <= 200) {
-                    idFinal = idBolo++;
-                    containerBolos.innerHTML += `
+                // Renderizar Bolos (100-200)
+                else if (countBolo <= 200 && nome && precoPor) {
+                    const currentId = countBolo++;
+                    carouselBolos.innerHTML += `
                         <div class="item-small">
-                            <img class="img-small" src="${img}">
-                            <div class="combo-title" style="font-size: 14px;">${nome}</div>
-                            <div class="price-new" style="font-size: 18px;">R$ ${precoPor}</div>
-                            <button class="btn-add" onclick="addToCart('${nome}', ${precoPor}, '${img}', event, ${idFinal})">Adicionar</button>
+                            <img class="img-small" src="${imagem}">
+                            <div style="font-size:14px; font-weight:bold;">${nome}</div>
+                            <div class="price-new" style="font-size:18px;">R$ ${precoPor}</div>
+                            <button class="btn-add" onclick="addToCart('${nome}', ${precoPor}, '${imagem}', event, ${currentId})">Adicionar</button>
                         </div>`;
                 }
-                else if(secao === "Pronta Entrega" && idPronta <= 400) {
-                    idFinal = idPronta++;
-                    containerPronta.innerHTML += `
+                // Renderizar Pronta Entrega (300-400)
+                else if (countPronta <= 400 && nome && precoPor) {
+                    const currentId = countPronta++;
+                    carouselPronta.innerHTML += `
                         <div class="item-small">
-                            <img class="img-small" src="${img}">
-                            <div class="combo-title" style="font-size: 14px;">${nome}</div>
-                            <div class="price-new" style="font-size: 18px;">R$ ${precoPor}</div>
-                            <button class="btn-add" onclick="addToCart('${nome}', ${precoPor}, '${img}', event, ${idFinal})">Adicionar</button>
+                            <img class="img-small" src="${imagem}">
+                            <div style="font-size:14px; font-weight:bold;">${nome}</div>
+                            <div class="price-new" style="font-size:18px;">R$ ${precoPor}</div>
+                            <button class="btn-add" onclick="addToCart('${nome}', ${precoPor}, '${imagem}', event, ${currentId})">Adicionar</button>
                         </div>`;
                 }
             });
+        }
+
+        function checkStatus() {
+            const hour = new Date().getHours();
+            const badge = document.getElementById('status-badge');
+            const dot = document.getElementById('status-dot');
+            const label = document.getElementById('status-label');
+
+            if (hour >= configHorario.abre && hour < configHorario.fecha) {
+                badge.className = "status-badge status-aberto";
+                dot.className = "dot dot-green";
+                label.innerText = "ABERTO";
+            } else {
+                badge.className = "status-badge status-fechado";
+                dot.className = "dot dot-red";
+                label.innerText = "FECHADO";
+            }
         }
 
         function addToCart(name, price, img, event, id) {
@@ -364,72 +192,37 @@
             cake.style.top = event.clientY + 'px';
             document.body.appendChild(cake);
 
-            const cartBtn = document.querySelector('.cart-btn');
-            const cartRect = cartBtn.getBoundingClientRect();
+            const cartBtn = document.getElementById('floatingCart');
+            const rect = cartBtn.getBoundingClientRect();
 
             setTimeout(() => {
-                cake.style.left = (cartRect.left + 15) + 'px';
-                cake.style.top = (cartRect.top + 15) + 'px';
-                cake.style.transform = 'scale(0.2)';
+                cake.style.left = (rect.left + 15) + 'px';
+                cake.style.top = (rect.top + 15) + 'px';
+                cake.style.transform = 'scale(0.1)';
             }, 100);
-            setTimeout(() => cake.remove(), 1000);
 
-            const itemExistente = cart.find(i => i.id === id);
-            if(itemExistente) itemExistente.qty++;
-            else cart.push({ id, name, price, img, qty: 1 });
+            setTimeout(() => cake.remove(), 1200);
+
+            cart.push({ name, price, img, id });
             renderCart();
         }
 
         function renderCart() {
             const list = document.getElementById('cartItemsList');
-            const totalText = document.getElementById('totalPrice');
-            const floatingCart = document.getElementById('floatingCart');
-            list.innerHTML = '';
+            const floating = document.getElementById('floatingCart');
             let total = 0;
+            list.innerHTML = '';
+            
+            cart.length > 0 ? floating.classList.add('cart-vibrant') : floating.classList.remove('cart-vibrant');
 
-            if (cart.length > 0) floatingCart.classList.add('cart-vibrant');
-            else floatingCart.classList.remove('cart-vibrant');
-
-            cart.forEach((item, index) => {
-                total += item.price * item.qty;
-                list.innerHTML += `
-                    <div class="cart-item">
-                        <img src="${item.img}" class="cart-item-img">
-                        <div class="cart-item-info">
-                            <strong>${item.name}</strong> (ID:${item.id})<br>
-                            <span style="color: var(--green)">R$ ${item.price.toFixed(2)}</span>
-                            <div class="cart-controls">
-                                <button class="btn-qty" onclick="changeQty(${index}, -1)">-</button>
-                                <span>${item.qty}</span>
-                                <button class="btn-qty" onclick="changeQty(${index}, 1)">+</button>
-                            </div>
-                        </div>
-                    </div>`;
+            cart.forEach((item, idx) => {
+                total += parseFloat(item.price);
+                list.innerHTML += `<div style="padding:10px; border-bottom:1px solid #eee;">
+                    ${item.name} (ID: ${item.id}) - R$ ${item.price} 
+                    <span onclick="cart.splice(${idx},1);renderCart()" style="color:red; cursor:pointer;"> [X]</span>
+                </div>`;
             });
-            totalText.innerText = `Total: R$ ${total.toFixed(2)}`;
-        }
-
-        function changeQty(index, delta) {
-            cart[index].qty += delta;
-            if(cart[index].qty <= 0) cart.splice(index, 1);
-            renderCart();
-        }
-
-        function checkStatus() {
-            const hour = new Date().getHours();
-            const badge = document.getElementById('status-badge');
-            const label = document.getElementById('status-label');
-            const dot = document.getElementById('status-dot');
-
-            if (hour >= horaAbre && hour < horaFecha) {
-                badge.className = "status-badge status-aberto";
-                label.innerText = "ABERTO";
-                dot.className = "dot dot-green";
-            } else {
-                badge.className = "status-badge status-fechado";
-                label.innerText = "FECHADO";
-                dot.className = "dot dot-red";
-            }
+            document.getElementById('totalPrice').innerText = `Total: R$ ${total.toFixed(2)}`;
         }
 
         function openCart() { document.getElementById('cartModal').style.display = 'flex'; }
@@ -439,15 +232,14 @@
 
         function enviarPedidoWhatsApp() {
             const nome = document.getElementById('nomeCliente').value;
-            if(!nome) return alert("Nome obrigatório");
-            let msg = `*Pedido Delícias da Ely*%0A*Cliente:* ${nome}%0A%0A`;
-            cart.forEach(i => msg += `- ${i.qty}x ${i.name} (ID:${i.id})%0A`);
-            window.open(`https://wa.me/5562995679219?text=${msg}`, '_blank');
+            if(!nome) return alert("Diga seu nome");
+            let msg = `*Pedido - Delícias da Ely*%0ACliente: ${nome}%0A%0A`;
+            cart.forEach(i => msg += `- ${i.name} (ID: ${i.id})%0A`);
+            window.open(`https://wa.me/5562995679219?text=${msg}`);
         }
 
         carregarDados();
-        setInterval(checkStatus, 5000);
-        checkStatus();
+        setInterval(checkStatus, 60000);
     </script>
 </body>
 </html>
